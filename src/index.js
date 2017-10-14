@@ -53,19 +53,20 @@ function get_balances(req, res) {
 }
 
 app.get('/:addr', function (req, res) {
-    const addr = req.params.addr;
-
-    if (db_connection) {
-        db_connection.query(`SELECT asset, quantity FROM ${db_table} where address = '${addr}' AND created_at > (NOW() - INTERVAL ${process.env.CACHE_HOURS} HOUR)`, function (error, results, fields) {
-            // If no cached results, re-check balances
-            if (error || results.length === 0) {
-                return get_balances(req, res);
-            }
-            res.send(results.filter(result => result.quantity != 0));
-        });
-    } else {
-        get_balances(req, res);
+    if (!db_connection) {
+        return get_balances(req, res);
     }
+    db_connection.query(`SELECT asset, quantity FROM ${db_table} where address = '${req.params.addr}' AND created_at > (NOW() - INTERVAL ${process.env.CACHE_HOURS} HOUR)`, function (error, results, fields) {
+        // If no cached results within the specified CACHE_HOURS environment variable, refresh balances
+        if (error || results.length === 0) {
+            return get_balances(req, res);
+        }
+        res.send(results.filter(result => result.quantity != 0));
+    });
+});
+
+app.get('/refresh/:addr', function (req, res) {
+    get_balances(req, res);
 });
 
 app.listen(8888, function () {

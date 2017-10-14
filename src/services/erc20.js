@@ -8,8 +8,9 @@ module.exports = {
     },
 
     fetch(addr) {
-        return Promise.all(contracts.map(contract => {
+        return Bluebird.all(contracts.map(contract => {
             const url = `https://api.tokenbalance.com/balance/${contract.address}/${addr}`;
+
             return req(url)
             .cancellable()
             .spread((resp, res) => {
@@ -23,7 +24,7 @@ module.exports = {
             .catch(InvalidResponseError, e => [{status: "error", service: e.service, message: e.message, raw: e.response}]);
         }))
     }
-}
+};
 
 // taken from https://raw.githubusercontent.com/kvhnuke/etherwallet/mercury/app/scripts/tokens/ethTokens.json
 const contracts = [{

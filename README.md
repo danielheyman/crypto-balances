@@ -20,7 +20,7 @@ balance("0xfc30a6c6d1d61f0027556ed25a670345ab39d0cb")
 
 Run `npm start` to get the service running.
 
-An API call can be made to port 8888 with a given address such as to http://127.0.0.71:8888/0x1ebacb7844fdc322f805904fbf1962802db1537c.
+An API call can be made to port 8888 with a given address to http://127.0.0.71:8888/address_to_check.
 
 It will return a json response such as `[{"quantity":"0.29","asset":"ETH"}]`.
 
@@ -28,17 +28,20 @@ It will return a json response such as `[{"quantity":"0.29","asset":"ETH"}]`.
 
 Keep a running history of all the balances of a given address.
 
-By running another project alongside, an API call can be made on port 8888 with a given address such as to http://0.0.0.0:8888/0x1ebacb7844fdc322f805904fbf1962802db1537c.
+By running another project alongside, an API call can be made on port 8888 with a given address to http://0.0.0.0:8888/address_to_check.
 
 The balances will be returned in addition to updating the database table with the balances. A cache period can be set within the environment variables.
+
+To force a recheck regardless of the cache, call the API at http://0.0.0.0:8888/refresh/address_to_check.
 
 - Update `docker-compose.yaml` with environment variables
 - Run `docker-compose up` to get the container up
 
 ## Supported Protocols
 
-- Using http://tokenbalance.com: ERC20 Tokens
+- Using https://chain.so: Bitcoin, Litecoin, Dash, Dogecoin
 - Using http://etherscan.io: Ethereum
+- Using http://tokenbalance.com: ERC20 Tokens
 
 ## Installation
 
