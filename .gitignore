@@ -1,0 +1,12 @@
+# Logs
+logs
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+
+# Node
+build/Release
+/node_modules/*

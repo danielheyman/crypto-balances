@@ -1,0 +1,19 @@
+version: "2"
+
+services:
+  node:
+    build: .
+    volumes:
+      - ./:/cryptobal
+    hostname: node
+    restart: always
+    ports:
+      - "8888:8888"
+    command: "npm start"
+    environment:
+      DB_HOST: docker.for.mac.localhost
+      DB_USER: root
+      DB_PASS: root
+      DB_DATABASE: coincube
+      DB_TABLE: crypto_balances
+      CACHE_HOURS: 24
