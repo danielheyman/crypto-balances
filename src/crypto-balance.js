@@ -19,4 +19,9 @@ module.exports = (addr) =>
     .reduce((a, b) => a.concat(b), [])
     .filter(asset => asset.status != "error")
     .filter(asset => asset.quantity != 0)
+    .then(items => {
+        let obj = {};
+        items.forEach(item => obj[item.asset] = item.quantity);
+        return obj;
+    });
 ;

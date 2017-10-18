@@ -24,7 +24,7 @@ module.exports = {
         .spread(function(resp, json) {
             if (resp.statusCode < 200 || resp.statusCode >= 300) throw new InvalidResponseError({service: url, response: resp});
             return {
-                quantity: json.data.confirmed_balance,
+                quantity: parseFloat(json.data.confirmed_balance),
                 asset: network
             };
         })

@@ -1,0 +1,12 @@
+version: "2"
+
+services:
+  node:
+    build: .
+    volumes:
+      - ./:/cryptobal
+    hostname: node
+    restart: always
+    ports:
+      - "8888:8888"
+    command: "npm start"
