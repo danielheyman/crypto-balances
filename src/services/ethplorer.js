@@ -1,4 +1,3 @@
-// Backup in case ethplorer fails
 const Bluebird = require("bluebird");
 const req = Bluebird.promisify(require("request"));
 const { InvalidResponseError } = require("../errors");
@@ -9,18 +8,27 @@ module.exports = {
     },
 
     fetch(addr) {
-        const url = `http://api.etherscan.io/api?module=account&action=balance&address=${addr}&tag=latest`;
-        const conversion = 1000000000000000000;
+        const url = `https://api.ethplorer.io/getAddressInfo/${addr}?apiKey=freekey`;
 
         return req(url, {json: true})
-        .timeout(2000)
+        .timeout(10000)
         .cancellable()
         .spread((resp, json) => {
             if (resp.statusCode < 200 || resp.statusCode >= 300) throw new InvalidResponseError({service: url, response: resp});
-            return {
-                asset: "ETH",
-                quantity: json.result / conversion
-            };
+            let results = [];
+            if (json.tokens) {
+                results = json.tokens.map(token => ({
+                    asset: token.tokenInfo.symbol,
+                    quantity: parseFloat(token.balance) / Math.pow(10, parseInt(token.tokenInfo.decimals) || 0)
+                }));
+            }
+            if (json.ETH) {
+                results.push({
+                    asset: "ETH",
+                    quantity: parseFloat(json.ETH.balance)
+                });
+            }
+            return results;
         })
         .catch(Bluebird.TimeoutError, e => [{status: 'error', service: url, message: e.message, raw: e}])
         .catch(InvalidResponseError, e => [{status: "error", service: e.service, message: e.message, raw: e.response}]);

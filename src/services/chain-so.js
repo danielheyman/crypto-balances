@@ -19,7 +19,7 @@ module.exports = {
         const url = `https://chain.so/api/v2/get_address_balance/${network}/${addr}`;
 
         return req(url, {json: true})
-        .timeout(3000)
+        .timeout(5000)
         .cancellable()
         .spread(function(resp, json) {
             if (resp.statusCode < 200 || resp.statusCode >= 300) throw new InvalidResponseError({service: url, response: resp});

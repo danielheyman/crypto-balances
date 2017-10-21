@@ -1,3 +1,4 @@
+// Backup in case ethplorer fails
 const Bluebird = require("bluebird");
 const req = Bluebird.promisify(require("request"));
 const { InvalidResponseError } = require("../errors");

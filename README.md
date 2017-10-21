@@ -36,8 +36,7 @@ An API call can be made on port 8888 with a given address to http://0.0.0.0:8888
 ## Supported Protocols
 
 - Using https://chain.so: Bitcoin, Litecoin, Dash, Dogecoin
-- Using http://etherscan.io: Ethereum
-- Using http://tokenbalance.com: ERC20 Tokens
+- Using https://ethplorer.io: Ethereum, ERC20 Tokens
 
 ## Installation
 
