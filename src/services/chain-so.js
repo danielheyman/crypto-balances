@@ -1,6 +1,5 @@
 const Bluebird = require("bluebird");
 const req = Bluebird.promisify(require("request"));
-const { InvalidResponseError } = require("../errors");
 
 module.exports = {
     check(addr) {
@@ -22,13 +21,11 @@ module.exports = {
         .timeout(5000)
         .cancellable()
         .spread(function(resp, json) {
-            if (resp.statusCode < 200 || resp.statusCode >= 300) throw new InvalidResponseError({service: url, response: resp});
+            if (resp.statusCode < 200 || resp.statusCode >= 300) throw new Error(JSON.stringify(resp));
             return {
                 quantity: parseFloat(json.data.confirmed_balance),
                 asset: network
             };
-        })
-        .catch(Bluebird.TimeoutError, e => [{status: 'error', service: url, message: e.message, raw: e}])
-        .catch(InvalidResponseError, e => [{status: "error", service: e.service, message: e.message, raw: e.response}]);
+        });
     }
 };

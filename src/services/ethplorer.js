@@ -1,6 +1,5 @@
 const Bluebird = require("bluebird");
 const req = Bluebird.promisify(require("request"));
-const { InvalidResponseError } = require("../errors");
 
 module.exports = {
     check(addr) {
@@ -14,7 +13,8 @@ module.exports = {
         .timeout(10000)
         .cancellable()
         .spread((resp, json) => {
-            if (resp.statusCode < 200 || resp.statusCode >= 300) throw new InvalidResponseError({service: url, response: resp});
+            if (resp.statusCode < 200 || resp.statusCode >= 300) throw new Error(JSON.stringify(resp));
+            if (json.error) throw new Error(json.error.message);
             let results = [];
             if (json.tokens) {
                 results = json.tokens.map(token => ({
@@ -29,8 +29,6 @@ module.exports = {
                 });
             }
             return results;
-        })
-        .catch(Bluebird.TimeoutError, e => [{status: 'error', service: url, message: e.message, raw: e}])
-        .catch(InvalidResponseError, e => [{status: "error", service: e.service, message: e.message, raw: e.response}]);
+        });
     }
 }

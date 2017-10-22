@@ -1,7 +1,6 @@
 // Backup in case ethplorer fails
 const Bluebird = require("bluebird");
 const req = Bluebird.promisify(require("request"));
-const { InvalidResponseError } = require("../errors");
 
 module.exports = {
     check(addr) {
@@ -15,14 +14,12 @@ module.exports = {
             return req(url)
             .cancellable()
             .spread((resp, res) => {
-                if (resp.statusCode < 200 || resp.statusCode >= 300) throw new InvalidResponseError({service: url, response: resp});
+                if (resp.statusCode < 200 || resp.statusCode >= 300) throw new Error(JSON.stringify(resp));
                 return {
                     asset: contract.symbol,
                     quantity: parseFloat(res)
                 };
-            })
-            .catch(Bluebird.TimeoutError, e => [{status: 'error', service: url, message: e.message, raw: e}])
-            .catch(InvalidResponseError, e => [{status: "error", service: e.service, message: e.message, raw: e.response}]);
+            });
         }))
     }
 };

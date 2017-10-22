@@ -25,6 +25,8 @@ An API call can be made to port 8888 with a given address to http://127.0.0.71:8
 
 It will return a json response such as `{ "ETH": 0.29, "OMG": 124.448 }`.
 
+If an error occurs, it will return a json response such as `{ "error": "ethplorer: Invalid API key" }`
+
 # As an API using Docker
 
 Useful when running on a machine with multiple node applications, each requiring different specifications.

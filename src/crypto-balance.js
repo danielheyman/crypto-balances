@@ -1,14 +1,16 @@
-const Promise = require("bluebird");
+const Bluebird = require("bluebird");
 const services = require('./services');
 
 module.exports = (addr) =>
-    Promise
+    Bluebird
     .settle((() => {
         const result = [];
         for (let s in services) {
             const service = services[s];
             if (service.check(addr)) { 
-                result.push(service.fetch(addr));
+                result.push(
+                    service.fetch(addr).catch(e => [{ error: `${s}: ${e.message}` }])
+                );
             }
         }
         return result;
@@ -17,11 +19,12 @@ module.exports = (addr) =>
     .cancellable()
     .map(asset => asset.isFulfilled() && asset.value())
     .reduce((a, b) => a.concat(b), [])
-    .filter(asset => asset.status != "error")
-    .filter(asset => asset.quantity != 0)
     .then(items => {
         let obj = {};
-        items.forEach(item => obj[item.asset] = item.quantity);
+        items.forEach(item => {
+            if (item.error) throw new Error(item.error);
+            obj[item.asset] = item.quantity;
+        });
         return obj;
     });
 ;
