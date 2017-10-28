@@ -13,6 +13,7 @@ module.exports = (addr) =>
                 );
             }
         }
+        if(result.length === 0) return [[{ error: `no matches found` }]]
         return result;
     })())
     .timeout(10000)
