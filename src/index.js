@@ -8,6 +8,10 @@ app.get('/:addr', function (req, res) {
     .catch(error => res.send({ "error": error.message }));
 });
 
+app.use('*', function (req, res) {
+    res.send({ "error": "invalid route" });
+});
+
 app.listen(8888, function () {
     console.log('App listening on port 8888!')
 });
