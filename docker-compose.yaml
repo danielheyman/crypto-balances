@@ -4,7 +4,7 @@ services:
   node:
     build: .
     volumes:
-      - ./:/cryptobal
+     - ./src:/cryptobal/src
     hostname: node
     restart: always
     ports:
