@@ -1,16 +1,18 @@
 const Bluebird = require("bluebird");
 const services = require('./services');
 
-module.exports = (addr) =>
-    Bluebird
+module.exports = (addr) => {
+    let address_type = "";
+    return Bluebird
     .settle((() => {
         const result = [];
         for (let s in services) {
             const service = services[s];
-            if (service.check(addr)) { 
+            if (service.check(addr)) {
                 result.push(
                     service.fetch(addr).catch(e => [{ error: `${s}: ${e.message}` }])
                 );
+                address_type = service.symbol(addr);
             }
         }
         if(result.length === 0) return [[{ error: `no matches found` }]]
@@ -21,11 +23,15 @@ module.exports = (addr) =>
     .map(asset => asset.isFulfilled() && asset.value())
     .reduce((a, b) => a.concat(b), [])
     .then(items => {
-        let obj = {};
+        let obj = {
+            address_type,
+            balances: {},
+        };
         items.forEach(item => {
             if (item.error) throw new Error(item.error);
-            obj[item.asset] = item.quantity;
+            obj.balances[item.asset] = item.quantity;
         });
         return obj;
     });
+}
 ;

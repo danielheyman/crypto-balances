@@ -8,35 +8,40 @@ const balance = require("../src/crypto-balance");
 describe("Balance", function() {
     it("has a BTC balance", done =>
         balance("3D2oetdNuZUqQHPJmcMDDHYoqkyNVsFk9r").then((result) => {
-            expect(result.BTC).to.exist;
+            expect(result.address_type).to.equal("BTC");
+            expect(result.balances.BTC).to.exist;
             return done();
         })
     );
     
     it("has an LTC balance", done =>
         balance("LdP8Qox1VAhCzLJNqrr74YovaWYyNBUWvL").then((result) => {
-            expect(result.LTC).to.exist;
+            expect(result.address_type).to.equal("LTC");
+            expect(result.balances.LTC).to.exist;
             return done();
         })
     );
     
     it("has an DASH balance", done =>
         balance("XekiLaxnqpFb2m4NQAEcsKutZcZgcyfo6W").then((result) => {
-            expect(result.DASH).to.exist;
+            expect(result.address_type).to.equal("DASH");
+            expect(result.balances.DASH).to.exist;
             return done();
         })
     );
     
     it("has an DOGE balance", done =>
         balance("D8EyEfuNsfQ3root9R3ac54mMcLmoNBW6q").then((result) => {
-            expect(result.DOGE).to.exist;
+            expect(result.address_type).to.equal("DOGE");
+            expect(result.balances.DOGE).to.exist;
             return done();
         })
     );
 
     it("has an ETH & ERC20 balance", done =>
         balance("0x1ebacb7844fdc322f805904fbf1962802db1537c").then((result) => {
-            expect(result.ETH && result.OMG).to.exist;
+            expect(result.address_type).to.equal("ETH");
+            expect(result.balances.ETH && result.balances.OMG).to.exist;
             return done();
         })
     );

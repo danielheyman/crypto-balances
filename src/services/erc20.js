@@ -7,6 +7,10 @@ module.exports = {
         return RegExp('^(0x)?[0-9a-fA-F]{40}$').test(addr);
     },
 
+    symbol(addr) {
+        return "ETH";
+    },
+
     fetch(addr) {
         return Bluebird.all(contracts.map(contract => {
             const url = `https://api.tokenbalance.com/balance/${contract.address}/${addr}`;

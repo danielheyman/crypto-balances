@@ -6,14 +6,18 @@ module.exports = {
         return RegExp('^[LXD13][a-km-zA-HJ-NP-Z0-9]{26,33}$').test(addr);
     },
 
-    fetch(addr) {
-        const network = ({
+    symbol(addr) {
+        return ({
             1: "BTC",
             3: "BTC",
             L: "LTC",
             X: "DASH",
             D: "DOGE"
         })[addr[0]];
+    },
+
+    fetch(addr) {
+        const network = this.symbol(addr);
 
         const url = `https://chain.so/api/v2/get_address_balance/${network}/${addr}`;
 
