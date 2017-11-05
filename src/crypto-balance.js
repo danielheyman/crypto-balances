@@ -12,7 +12,7 @@ module.exports = (addr) => {
                 result.push(
                     service.fetch(addr).catch(e => [{ error: `${s}: ${e.message}` }])
                 );
-                address_type = service.symbol(addr);
+                if (!address_type) address_type = service.symbol(addr);
             }
         }
         if(result.length === 0) return [[{ error: `no matches found` }]]
@@ -29,8 +29,9 @@ module.exports = (addr) => {
         };
         items.forEach(item => {
             if (item.error) throw new Error(item.error);
-            obj.balances[item.asset] = item.quantity;
+            if (item.quantity) obj.balances[item.asset] = item.quantity;
         });
+        if (Object.keys(obj.balances).length === 1) obj.address_type = Object.keys(obj.balances)[0]
         return obj;
     });
 }

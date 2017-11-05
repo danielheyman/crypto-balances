@@ -6,6 +6,7 @@ const balance = require("../src/crypto-balance");
 // Tests use the addresses from the richest addresses at https://bitinfocharts.com to ensure longlivity of the address balance
 
 describe("Balance", function() {
+    // Chain-so
     it("has a BTC balance", done =>
         balance("3D2oetdNuZUqQHPJmcMDDHYoqkyNVsFk9r").then((result) => {
             expect(result.address_type).to.equal("BTC");
@@ -22,7 +23,7 @@ describe("Balance", function() {
         })
     );
     
-    it("has an DASH balance", done =>
+    it("has a DASH balance", done =>
         balance("XekiLaxnqpFb2m4NQAEcsKutZcZgcyfo6W").then((result) => {
             expect(result.address_type).to.equal("DASH");
             expect(result.balances.DASH).to.exist;
@@ -30,7 +31,7 @@ describe("Balance", function() {
         })
     );
     
-    it("has an DOGE balance", done =>
+    it("has a DOGE balance", done =>
         balance("D8EyEfuNsfQ3root9R3ac54mMcLmoNBW6q").then((result) => {
             expect(result.address_type).to.equal("DOGE");
             expect(result.balances.DOGE).to.exist;
@@ -38,10 +39,36 @@ describe("Balance", function() {
         })
     );
 
+    // ethplorer
     it("has an ETH & ERC20 balance", done =>
         balance("0x1ebacb7844fdc322f805904fbf1962802db1537c").then((result) => {
             expect(result.address_type).to.equal("ETH");
             expect(result.balances.ETH && result.balances.OMG).to.exist;
+            return done();
+        })
+    );
+
+    // Chainz
+    it("has a LTC Sewgit balance", done =>
+        balance("MA8xeZjrKv8h5s6Y3Ps5DPEKvCYuZZAiMr").then((result) => {
+            expect(result.address_type).to.equal("LTC");
+            expect(result.balances.LTC).to.exist;
+            return done();
+        })
+    );
+
+    it("has a Stratus balance", done =>
+        balance("SQXV89VgTyW7FGZEVB3qDT7NGegpJ41p5k").then((result) => {
+            expect(result.address_type).to.equal("STRAT");
+            expect(result.balances.STRAT).to.exist;
+            return done();
+        })
+    );
+
+    it("has a DigiByte balance", done =>
+        balance("DCo1dbnnwWB4cucwSduXMdTV1tDErZHNfx").then((result) => {
+            expect(result.address_type).to.equal("DGB");
+            expect(result.balances.DGB).to.exist;
             return done();
         })
     );

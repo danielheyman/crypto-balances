@@ -3,4 +3,5 @@ module.exports = {
     // erc20: require('./erc20'),
     chainso: require('./chain-so'),
     ethplorer: require('./ethplorer'),
+    chainz: require('./chainz'),
 };
