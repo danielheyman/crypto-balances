@@ -6,6 +6,15 @@ const balance = require("../src/crypto-balance");
 // Tests use the addresses from the richest addresses at https://bitinfocharts.com to ensure longlivity of the address balance
 
 describe("Balance", function() {
+    // Xpub
+    it("has an xpub balance", done =>
+        balance("xpub6CUGRUonZSQ4TWtTMmzXdrXDtypWKiKrhko4egpiMZbpiaQL2jkwSB1icqYh2cfDfVxdx4df189oLKnC5fSwqPfgyP3hooxujYzAu3fDVmz").then((result) => {
+            expect(result.address_type).to.equal("BTC");
+            expect(result.balances.BTC).to.exist;
+            return done();
+        })
+    );
+
     // Chain-so
     it("has a BTC balance", done =>
         balance("3D2oetdNuZUqQHPJmcMDDHYoqkyNVsFk9r").then((result) => {

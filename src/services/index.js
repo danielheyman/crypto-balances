@@ -4,4 +4,5 @@ module.exports = {
     chainso: require('./chain-so'),
     ethplorer: require('./ethplorer'),
     chainz: require('./chainz'),
+    blockchaininfo: require('./blockchain-info'),
 };
