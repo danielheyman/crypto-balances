@@ -5,7 +5,11 @@ Extended from the original package by [@litvintech](https://github.com/litvintec
 Easily check address balances of various crypto tokens. Script automaticaly recognizes a protocol by address and returns balances of tokens associated with it.
 
 ## As a dependency
-Require the package and use it as any other promise.
+Require the package and use it as any other promise:
+
+```
+~ » npm install --save https://github.com/danielheyman/crypto-balances.git
+```
 
 ```javascript
 const balance = require('crypto-balances');
