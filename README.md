@@ -1,4 +1,4 @@
-Extended from the original package by [@litvintech](https://github.com/litvintech/crypto-balances) to provide API services.
+Extended from the original package by [@litvintech](https://github.com/litvintech/crypto-balances) to provide API services and re-formatted results.
 
 # Crypto-balances
 
