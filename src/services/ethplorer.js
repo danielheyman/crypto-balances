@@ -1,3 +1,4 @@
+// Backup in case etherscan fails
 const Bluebird = require("bluebird");
 const req = Bluebird.promisify(require("request"));
 
