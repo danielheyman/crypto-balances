@@ -68,7 +68,7 @@ describe("Balance", function() {
 
     // Chainz
     it("has a LTC Sewgit balance", done =>
-        balance("MA8xeZjrKv8h5s6Y3Ps5DPEKvCYuZZAiMr").then((result) => {
+        balance("MJejLHNVJLdkp9RM97AyFE85qmpPzh8PYw").then((result) => {
             expect(result.address_type).to.equal("LTC");
             expect(result.balances.LTC).to.exist;
             return done();

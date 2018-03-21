@@ -9,8 +9,6 @@
   "dependencies": {
     "bluebird": "^2.3.0",
     "express": "^4.16.2",
-    "neotracker-server-scrape": "0.0.3",
-    "neotracker-server-web": "0.0.3",
     "request": "^2.67.0",
     "websocket": "^1.0.25"
   },

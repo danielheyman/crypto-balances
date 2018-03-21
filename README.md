@@ -1,4 +1,4 @@
-Extended from the original package by [@litvintech](https://github.com/litvintech/crypto-balances) to provide API services.
+Extended from the original package by [@litvintech](https://github.com/litvintech/crypto-balances) to provide API services and re-formatted results.
 
 # Crypto-balances
 
@@ -42,7 +42,8 @@ An API call can be made on port 8888 with a given address to http://0.0.0.0:8888
 ## Supported Protocols
 
 - Using https://chain.so: Bitcoin, Litecoin, Dash, Dogecoin
-- Using https://ethplorer.io: Ethereum, ERC20 Tokens
+- Using https://blockchain.info: Bitcoin Xpub
+- Using https://etherscan.io: Ethereum, ERC20 Tokens
 - Using https://chainz.cryptoid.info: LTC Segwit, Stratus, DigiByte
 - Using https://neotracker.io: NEO, NEP5 Tokens
 
