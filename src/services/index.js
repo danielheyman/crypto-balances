@@ -5,4 +5,5 @@ module.exports = {
     ethplorer: require('./ethplorer'),
     chainz: require('./chainz'),
     blockchaininfo: require('./blockchain-info'),
+    neotracker: require('./neotracker'),
 };

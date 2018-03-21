@@ -23,6 +23,15 @@ describe("Balance", function() {
             return done();
         })
     );
+
+    it("has a NEO & GAS balance", done =>
+        balance("AKDVzYGLczmykdtRaejgvWeZrvdkVEvQ1X").then((result) => {
+            expect(result.address_type).to.equal("NEO");
+            expect(result.balances.NEO).to.exist;
+            expect(result.balances.GAS).to.exist;
+            return done();
+        })
+    );
     
     it("has an LTC balance", done =>
         balance("LdP8Qox1VAhCzLJNqrr74YovaWYyNBUWvL").then((result) => {
