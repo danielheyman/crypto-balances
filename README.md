@@ -44,7 +44,7 @@ An API call can be made on port 8888 with a given address to http://0.0.0.0:8888
 - Using https://chain.so: Bitcoin, Litecoin, Dash, Dogecoin
 - Using https://blockchain.info: Bitcoin Xpub
 - Using https://etherscan.io: Ethereum, ERC20 Tokens
-- Using https://chainz.cryptoid.info: LTC Segwit, Stratus, DigiByte
+- Using https://chainz.cryptoid.info: LTC Segwit, Stratis, DigiByte
 - Using https://neotracker.io: NEO, NEP5 Tokens
 
 ## Installation
