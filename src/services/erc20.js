@@ -3,11 +3,13 @@ const Bluebird = require("bluebird");
 const req = Bluebird.promisify(require("request"));
 
 module.exports = {
+    supported_address: [ "ETH" ],
+
     check(addr) {
         return RegExp('^(0x)?[0-9a-fA-F]{40}$').test(addr);
     },
 
-    symbol(addr) {
+    symbol() {
         return "ETH";
     },
 

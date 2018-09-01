@@ -2,11 +2,13 @@ const Bluebird = require("bluebird");
 const req = Bluebird.promisify(require("request"));
 
 module.exports = {
+    supported_address: [ "BTC" ],
+
     check(addr) {
         return RegExp('^xpub[a-km-zA-HJ-NP-Z0-9]{107}$').test(addr);
     },
     
-    symbol(addr) {
+    symbol() {
         return "BTC";
     },
 

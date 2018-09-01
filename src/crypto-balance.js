@@ -1,21 +1,22 @@
 const Bluebird = require("bluebird");
 const services = require('./services');
 
-module.exports = (addr) => {
+module.exports = (addr, coin) => {
     let address_type = "";
     return Bluebird
     .settle((() => {
         const result = [];
         for (let s in services) {
             const service = services[s];
-            if (service.check(addr)) {
+            const supported = !coin || service.supported_address.map(c => c.toLowerCase()).includes(coin.toLowerCase());
+            if (supported && service.check(addr)) {
                 result.push(
                     service.fetch(addr).catch(e => [{ error: `${s}: ${e.message}` }])
                 );
                 if (!address_type) address_type = service.symbol(addr);
             }
         }
-        if(result.length === 0) return [[{ error: `no matches found` }]]
+        if(result.length === 0) return [[{ error: `no matches found` }]];
         return result;
     })())
     .timeout(10000)
@@ -33,6 +34,12 @@ module.exports = (addr) => {
         });
         if (Object.keys(obj.balances).length === 1) obj.address_type = Object.keys(obj.balances)[0]
         return obj;
+    })
+    .catch(e => {
+        return {
+            address_type: 'unknown',
+            error: e
+        }
     });
 }
 ;

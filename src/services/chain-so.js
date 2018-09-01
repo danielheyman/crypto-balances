@@ -2,6 +2,8 @@ const Bluebird = require("bluebird");
 const req = Bluebird.promisify(require("request"));
 
 module.exports = {
+    supported_address: [ "BTC", "LTC", "DASH", "DOGE" ],
+
     check(addr) {
         return RegExp('^[LXD13][a-km-zA-HJ-NP-Z0-9]{26,33}$').test(addr);
     },

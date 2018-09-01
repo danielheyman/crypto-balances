@@ -90,4 +90,19 @@ describe("Balance", function() {
             return done();
         })
     );
+
+    it("supports a specific coin type - invalid", done => 
+        balance("0x1ebacb7844fdc322f805904fbf1962802db1537c", "BTC").then(result => {
+            expect(result.address_type).to.equal("unknown");
+            return done();
+        })
+    );
+
+    it("supports a specific coin type - valid", done =>
+        balance("0x1ebacb7844fdc322f805904fbf1962802db1537c", "ETH").then((result) => {
+            expect(result.address_type).to.equal("ETH");
+            expect(result.balances.ETH && result.balances.OMG).to.exist;
+            return done();
+        })
+    );
 });

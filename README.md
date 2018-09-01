@@ -19,6 +19,9 @@ balance("0xfc30a6c6d1d61f0027556ed25a670345ab39d0cb")
 .catch(error => console.log(`OH NO! ${error}`));
 
 // logs: { "address_type": "ETH", balances: {"ETH": 0.29, "OMG": 124.448} }
+
+// balance takes an optional second coin type parameter.
+// eg. balance("0xfc30a6c6d1d61f0027556ed25a670345ab39d0cb", "BTC")
 ```
 
 ## As an API
@@ -29,7 +32,9 @@ An API call can be made to port 8888 with a given address to http://127.0.0.71:8
 
 It will return a json response such as `{ "address_type": "ETH", balances: {"ETH": 0.29, "OMG": 124.448} }`.
 
-If an error occurs, it will return a json response such as `{ "error": "ethplorer: Invalid API key" }`
+If an error occurs, it will return a json response such as `{ "error": "ethplorer: Invalid API key" }`.
+
+For a specific coin, a call can be made to http://127.0.0.71:8888/coin/address_to_check. eg. http://127.0.0.71:8888/eth/0xfc30a6c6d1d61f0027556ed25a670345ab39d0cb
 
 # As an API using Docker
 
