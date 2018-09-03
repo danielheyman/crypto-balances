@@ -28,17 +28,24 @@ module.exports = (addr, coin) => {
             address_type,
             balances: {},
         };
+        let error;
         items.forEach(item => {
+            if (item.error) {
+                error = item.error;
+                return;
+            }
             if (item.error) throw new Error(item.error);
             if (item.quantity) obj.balances[item.asset] = item.quantity;
         });
-        if (Object.keys(obj.balances).length === 1) obj.address_type = Object.keys(obj.balances)[0]
+        if (Object.keys(obj.balances).length === 0 && error) {
+            throw new Error(error);
+        }
         return obj;
     })
     .catch(e => {
         return {
             address_type: 'unknown',
-            error: e
+            error: e.message
         }
     });
 }
