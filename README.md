@@ -1,18 +1,26 @@
 Extended from the original deprecated package by [@litvintech](https://github.com/litvintech/crypto-balances) to provide API services and re-formatted results.
 
-# Crypto-balances
+# Crypto balances
 
 Easily check address balances of various crypto tokens. Script automaticaly recognizes a protocol by address and returns balances of tokens associated with it.
+
+## Supported Protocols
+
+- Using https://chain.so: Bitcoin, Litecoin, Dash, Dogecoin
+- Using https://blockchain.info: Bitcoin Xpub
+- Using https://etherscan.io: Ethereum, ERC20 Tokens
+- Using https://chainz.cryptoid.info: LTC Segwit, Stratis, DigiByte
+- Using https://neotracker.io: NEO, NEP5 Tokens
 
 ## As a dependency
 Require the package and use it as any other promise:
 
 ```
-~ » npm install --save https://github.com/danielheyman/crypto-balances.git
+~ » npm install --save crypto-balances-2
 ```
 
 ```javascript
-const balance = require('crypto-balances');
+const balance = require('crypto-balances-2');
 
 balance("0xfc30a6c6d1d61f0027556ed25a670345ab39d0cb")
 .then(result => console.log(result))
@@ -26,7 +34,12 @@ balance("0xfc30a6c6d1d61f0027556ed25a670345ab39d0cb")
 
 ## As an API
 
-Run `npm start` to get the service running.
+```
+~ » git clone https://github.com/danielheyman/crypto-balances
+~ » cd crypto-balances
+~ » npm install
+~ » npm start
+```
 
 An API call can be made to port 8888 with a given address to http://127.0.0.71:8888/address_to_check.
 
@@ -36,30 +49,13 @@ If an error occurs, it will return a json response such as `{ "error": "ethplore
 
 For a specific coin, a call can be made to http://127.0.0.71:8888/coin/address_to_check. eg. http://127.0.0.71:8888/eth/0xfc30a6c6d1d61f0027556ed25a670345ab39d0cb
 
-# As an API using Docker
+## As an API using Docker
 
 Useful when running on a machine with multiple node applications, each requiring different specifications.
 
 Run `docker-compose up` to get the container up.
 
 An API call can be made on port 8888 with a given address to http://0.0.0.0:8888/address_to_check.
-
-## Supported Protocols
-
-- Using https://chain.so: Bitcoin, Litecoin, Dash, Dogecoin
-- Using https://blockchain.info: Bitcoin Xpub
-- Using https://etherscan.io: Ethereum, ERC20 Tokens
-- Using https://chainz.cryptoid.info: LTC Segwit, Stratis, DigiByte
-- Using https://neotracker.io: NEO, NEP5 Tokens
-
-## Installation
-
-```
-~ » git clone https://github.com/danielheyman/crypto-balances
-~ » cd crypto-balances
-~ » npm install
-~ » npm start
-```
 
 ## Tests
 ```

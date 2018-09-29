@@ -1,5 +1,5 @@
 {
-  "name": "crypto-balances",
+  "name": "crypto-balances-2",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -16,5 +16,14 @@
     "chai": "^2.1.0",
     "mocha": "^2.3.4"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "author": "danielheyman",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danielheyman/crypto-balances.git"
+  },
+  "bugs": {
+    "url": "https://github.com/danielheyman/crypto-balances/issues"
+  },
+  "homepage": "https://github.com/danielheyman/crypto-balances"
 }
