@@ -1,6 +1,6 @@
 {
   "name": "crypto-balances-2",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha test",
