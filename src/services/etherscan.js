@@ -23,7 +23,7 @@ module.exports = {
 
             let tokens = [];
             
-            const regex = /<br>([\d.,]+) (\w+)</g;
+            const regex = /<span class='list-amount link-hover__item'>([\d.,]+) (\w+)</g;
             let matches;
             while ((matches = regex.exec(body)) !== null) {
                 tokens.push({

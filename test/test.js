@@ -76,7 +76,7 @@ describe("Balance", function() {
     );
 
     it("has a Stratus balance", done =>
-        balance("SQXV89VgTyW7FGZEVB3qDT7NGegpJ41p5k").then((result) => {
+        balance("SN7bBW1RRpu3PsSwcKWF74ZDL9UNG32edd").then((result) => {
             expect(result.address_type).to.equal("STRAT");
             expect(result.balances.STRAT).to.exist;
             return done();
@@ -84,7 +84,7 @@ describe("Balance", function() {
     );
 
     it("has a DigiByte balance", done =>
-        balance("DCo1dbnnwWB4cucwSduXMdTV1tDErZHNfx").then((result) => {
+        balance("DCo1dbnnwWB4cucwSduXMdTV1tDErZHNfx", "DGB").then((result) => {
             expect(result.address_type).to.equal("DGB");
             expect(result.balances.DGB).to.exist;
             return done();
