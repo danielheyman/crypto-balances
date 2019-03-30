@@ -27,7 +27,7 @@ module.exports = {
                 results = json.tokens.map(token => ({
                     asset: token.tokenInfo.symbol,
                     quantity: parseFloat(token.balance) / Math.pow(10, parseInt(token.tokenInfo.decimals) || 0)
-                }));
+                })).filter(b => b.asset);
             }
             if (json.ETH) {
                 results.push({
