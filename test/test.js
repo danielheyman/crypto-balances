@@ -6,7 +6,7 @@ const balance = require("../src/crypto-balance");
 // Tests use the addresses from the richest addresses at https://bitinfocharts.com to ensure longlivity of the address balance
 
 describe("Balance", function() {
-    // Xpub
+    // blockchain-info
     it("has an xpub balance", done =>
         balance("xpub6CUGRUonZSQ4TWtTMmzXdrXDtypWKiKrhko4egpiMZbpiaQL2jkwSB1icqYh2cfDfVxdx4df189oLKnC5fSwqPfgyP3hooxujYzAu3fDVmz").then((result) => {
             expect(result.address_type).to.equal("BTC");
@@ -15,20 +15,21 @@ describe("Balance", function() {
         })
     );
 
-    // Chain-so
-    it("has a BTC balance", done =>
-        balance("3D2oetdNuZUqQHPJmcMDDHYoqkyNVsFk9r").then((result) => {
-            expect(result.address_type).to.equal("BTC");
-            expect(result.balances.BTC).to.exist;
-            return done();
-        })
-    );
-
+    // neoscan
     it("has a NEO & GAS balance", done =>
         balance("AKDVzYGLczmykdtRaejgvWeZrvdkVEvQ1X").then((result) => {
             expect(result.address_type).to.equal("NEO");
             expect(result.balances.NEO).to.exist;
             expect(result.balances.GAS).to.exist;
+            return done();
+        })
+    );
+
+    // chain-so
+    it("has a BTC balance", done =>
+        balance("3D2oetdNuZUqQHPJmcMDDHYoqkyNVsFk9r").then((result) => {
+            expect(result.address_type).to.equal("BTC");
+            expect(result.balances.BTC).to.exist;
             return done();
         })
     );
@@ -91,6 +92,7 @@ describe("Balance", function() {
         })
     );
 
+    // specific coins
     it("supports a specific coin type - invalid", done => 
         balance("0x1ebacb7844fdc322f805904fbf1962802db1537c", "BTC").then(result => {
             expect(result.address_type).to.equal("unknown");
