@@ -1,6 +1,6 @@
 {
   "name": "crypto-balances-2",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha test",
@@ -9,12 +9,12 @@
   "dependencies": {
     "bluebird": "^2.3.0",
     "express": "^4.16.2",
-    "request": "^2.67.0",
+    "request": "^2.88.0",
     "websocket": "^1.0.25"
   },
   "devDependencies": {
     "chai": "^2.1.0",
-    "mocha": "^2.3.4"
+    "mocha": "^6.2.0"
   },
   "license": "MIT",
   "author": "danielheyman",
