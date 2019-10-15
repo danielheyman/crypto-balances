@@ -6,11 +6,11 @@ Easily check address balances of various crypto tokens. Script automaticaly reco
 
 ## Supported Protocols
 
-- Using https://chain.so: Bitcoin, Litecoin, Dash, Dogecoin
+- Using https://blockcypher.com: Bitcoin, Litecoin, Dash, Dogecoin
 - Using https://blockchain.info: Bitcoin Xpub
-- Using https://etherscan.io: Ethereum, ERC20 Tokens
+- Using https://ethplorer.io: Ethereum, ERC20 Tokens
 - Using https://chainz.cryptoid.info: LTC Segwit, Stratis, DigiByte
-- Using https://neotracker.io: NEO, NEP5 Tokens
+- Using https://neoscan.io: NEO, NEP5 Tokens
 
 ## As a dependency
 Require the package and use it as any other promise:

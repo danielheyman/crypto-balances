@@ -23,7 +23,7 @@ describe("Balance", function() {
         })
     );
 
-    // chain-so
+    // blockcypher
     it("has a BTC balance", () =>
         balance("3D2oetdNuZUqQHPJmcMDDHYoqkyNVsFk9r").then((result) => {
             expect(result.address_type).to.equal("BTC");
