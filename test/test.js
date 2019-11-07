@@ -6,9 +6,24 @@ const balance = require("../src/crypto-balance");
 // Tests use the addresses from the richest addresses at https://bitinfocharts.com to ensure longlivity of the address balance
 
 describe("Balance", function() {
-    // blockchain-info
-    it("has an xpub balance", () =>
+    // blockonomics
+    it("has a xpub balance", () =>
         balance("xpub6CUGRUonZSQ4TWtTMmzXdrXDtypWKiKrhko4egpiMZbpiaQL2jkwSB1icqYh2cfDfVxdx4df189oLKnC5fSwqPfgyP3hooxujYzAu3fDVmz").then((result) => {
+            expect(result.address_type).to.equal("BTC");
+            expect(result.balances.BTC).to.exist;
+        })
+    );
+
+    it("converts xpub segwit to ypub", () =>
+        // converted ypub below to xpub using https://jlopp.github.io/xpub-converter/
+        balance("xpub6CtEr82YekUCtCg8Vdu9gRUQfpx34vYd3Tga5eDh33RfeA9wcoV8YmpshJ4tCUEm6cHT1WT1unD1iU45MvbsQtgPsECpiVxYG4ZMVKEKqGP").then((result) => {
+            expect(result.address_type).to.equal("BTC");
+            expect(result.balances.BTC).to.exist;
+        })
+    )
+
+    it("has a ypub balance", () =>
+        balance("ypub6XiW9nhToS1gjVsFKzgmtWZuqo6V1YY7xaCns37aR3oYhFyAsTehAqV1iW2UCNtgWFQFkz3aNSZZbkfe5d1tD8MzjZuFJQn2XnczsxtjoXr").then((result) => {
             expect(result.address_type).to.equal("BTC");
             expect(result.balances.BTC).to.exist;
         })

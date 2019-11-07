@@ -7,7 +7,7 @@ Easily check address balances of various crypto tokens. Script automaticaly reco
 ## Supported Protocols
 
 - Using https://blockcypher.com: Bitcoin, Litecoin, Dash, Dogecoin
-- Using https://blockchain.info: Bitcoin Xpub
+- Using https://blockonomics.co: Bitcoin Xpub, Xpub Segwit, Ypub
 - Using https://ethplorer.io: Ethereum, ERC20 Tokens
 - Using https://chainz.cryptoid.info: LTC Segwit, Stratis, DigiByte
 - Using https://neoscan.io: NEO, NEP5 Tokens
