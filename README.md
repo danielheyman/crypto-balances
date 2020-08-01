@@ -30,6 +30,9 @@ balance("0xfc30a6c6d1d61f0027556ed25a670345ab39d0cb")
 
 // balance takes an optional second coin type parameter.
 // eg. balance("0xfc30a6c6d1d61f0027556ed25a670345ab39d0cb", "BTC")
+
+// balance takes an optional third option type parameter.
+// eg. balance("0xfc30a6c6d1d61f0027556ed25a670345ab39d0cb", "ETH", { ethplorerApiKey: 'freekey' })
 ```
 
 ## As an API

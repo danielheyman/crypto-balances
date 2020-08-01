@@ -1,7 +1,7 @@
 const Bluebird = require("bluebird");
 const services = require('./services');
 
-module.exports = (addr, coin) => {
+module.exports = (addr, coin, options) => {
     let address_type = "";
     return Bluebird
     .settle((() => {
@@ -11,7 +11,7 @@ module.exports = (addr, coin) => {
             const supported = !coin || service.supported_address.map(c => c.toLowerCase()).includes(coin.toLowerCase());
             if (supported && service.check(addr)) {
                 result.push(
-                    service.fetch(addr).catch(e => [{ error: `${s}: ${e.message}` }])
+                    service.fetch(addr, options).catch(e => [{ error: `${s}: ${e.message}` }])
                 );
                 if (!address_type) address_type = service.symbol(addr);
             }

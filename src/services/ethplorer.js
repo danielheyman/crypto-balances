@@ -13,8 +13,8 @@ module.exports = {
         return "ETH";
     },
 
-    fetch(addr) {
-        const url = `https://api.ethplorer.io/getAddressInfo/${addr}?apiKey=freekey`;
+    fetch(addr, options = { ethplorerApiKey: 'freekey' }) {
+        const url = `https://api.ethplorer.io/getAddressInfo/${addr}?apiKey=${options.ethplorerApiKey || 'freekey'}`;
 
         return req(url, {json: true})
         .timeout(10000)
