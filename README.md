@@ -16,7 +16,7 @@ Easily check address balances of various crypto tokens. Script automaticaly reco
 Require the package and use it as any other promise:
 
 ```
-~ » npm install --save crypto-balances-2
+~ » yarn add git+https://github.com/vanvuongngo/crypto-balances.git
 ```
 
 ```javascript
